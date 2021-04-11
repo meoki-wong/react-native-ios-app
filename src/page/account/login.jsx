@@ -21,6 +21,7 @@ export default class Login extends Component {
         request.post('/login', 
         {userName: userName,
         password: password}).then(res=>{
+            console.log(res.data);
             alert(res.data.msg)
         }).catch(err=>console.log(err))
     }
