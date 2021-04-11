@@ -6,6 +6,7 @@ const main = require('./router/main')
 
 
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 app.use('/api', main)
 const port = 9000; // 端口号
 

@@ -4,6 +4,9 @@ import { pxToDp } from '../../utils/styleKits'
 import checkPhone from '../../utils/validator'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
+// import {login} from '../../router/routeMap'
+import request from '../../utils/request'
+import axios from 'axios'
 export default class Login extends Component {
 
     state = {
@@ -19,6 +22,11 @@ export default class Login extends Component {
             } else {
                 this.setState({isShowValid: true})
             }
+            
+            request.post('/register',{phone: phoneNumber}).then(res=>{
+                alert(res.data.meta)
+            })
+           
         }
         return (
 
@@ -30,7 +38,7 @@ export default class Login extends Component {
                         leftIcon={{ type: 'font-awesome', name: 'phone' }}
                         style={styles.inputBox}
                         maxLength={11}
-                        keyboardType="phone-pad"
+                        
                         errorMessage={this.state.isShowValid?'手机号码格式不正确':''}
                         onSubmitEditing={onPhoneSubmitEditing}
                         onChangeText={value => this.setState({ phoneNumber: value })}
