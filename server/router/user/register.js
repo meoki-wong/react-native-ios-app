@@ -1,6 +1,5 @@
 module.exports =  async(req,res) => {
     const {phone} = req.body
-    console.log(req.body)
     if(phone == '17316108461'){
          res.send({
              code: 0000,
