@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, ImageBackground, StatusBar, Image } from 'react-native'
 import { pxToDp } from '../../utils/styleKits'
+import checkPhone from '../../utils/validator'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 export default class Login extends Component {
+
+    state = {
+        phoneNumber : '',
+        isShowValid : false
+    }
     render() {
 
          const onPhoneSubmitEditing = ()=>{
-            alert('niho')
+             let {phoneNumber} = this.state
+            if(checkPhone(phoneNumber)){
+                this.setState({isShowValid: false})
+            } else {
+                this.setState({isShowValid: true})
+            }
         }
         return (
 
@@ -20,9 +31,9 @@ export default class Login extends Component {
                         style={styles.inputBox}
                         maxLength={11}
                         keyboardType="phone-pad"
-                        errorMessage={'手机号码格式不正确'}
+                        errorMessage={this.state.isShowValid?'手机号码格式不正确':''}
                         onSubmitEditing={onPhoneSubmitEditing}
-                        onChangeText={value => this.setState({ comment: value })}
+                        onChangeText={value => this.setState({ phoneNumber: value })}
                     />
                 </View>
             </ImageBackground>
