@@ -1,9 +1,10 @@
 const express = require("express");
-const mysql = require('mysql')
 const app = new express();
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 const main = require('./router/main')
+require('./database/init')
+require('./database/model/Users')
 // 配置跨域----->也可以通过服务端安装配置CORS
 app.use((req, res, next)=> {
     res.header("Access-Control-Allow-Origin", req.headers.origin); // 设置允许来自哪里的跨域请求访问（值为*代表允许任何跨域请求，但是没有安全保证）
@@ -14,18 +15,7 @@ app.use((req, res, next)=> {
     next();
 })
 
-// 连接数据库
-const dbServer = mysql.createConnection({
-    host: 'localhost',
-    port: 3306, // 默认3306
-    user: 'root',
-    password: '123456',
-    database: 'mydatabase' // 创建的数据库
-})
-dbServer.connect((err)=>{
-    if(err) {throw err}
-    console.log('数据库连接成功')
-})
+
 
 
 app.use(bodyParser.urlencoded({extended: false}))

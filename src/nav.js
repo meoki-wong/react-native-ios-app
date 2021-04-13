@@ -4,14 +4,14 @@ import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import Login from './page/account/register.jsx'
-import Register from './page/account/login'
+import Register from './page/account/register.jsx'
+import Login from './page/account/login'
 function HomeScreen({navigation}) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
-      <Button title="注册" onPress={()=>navigation.navigate('Login')}/>
-      <Button title="登录" onPress={()=>navigation.navigate('Register')}/>
+      <Button title="登录" onPress={()=>navigation.navigate('Login')}/>
+      <Button title="注册" onPress={()=>navigation.navigate('Register')}/>
     </View>
   );
 }
