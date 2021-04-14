@@ -20,7 +20,6 @@ module.exports = async (req,res)=>{
         })
         return 
     }
-    console.log('---->', findUser)
     if(userName != findUser.userName || password != findUser.password){
         res.send({
             data: null,
