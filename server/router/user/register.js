@@ -1,10 +1,10 @@
 const {User} = require('../../database/model/Users')
 
-module.exports = async (req,res) => {
+module.exports =async (req,res) => {
     const {userName, password} = req.body
 
-    const model = await User.findOne({where: {userName}})
-
+    const model =await User.findOne({where: {userName}})
+    
     if(model){
         res.send({  
             data: null,
@@ -16,8 +16,9 @@ module.exports = async (req,res) => {
     }
 
 
-    const createUser = await User.create({userName, password})
-    res.send({
+    const createUser = User.create({userName, password})
+    console.log('---->', createUser)
+     res.send({
         data: {createUser},
         meta:{
             msg: '创建用户成功'

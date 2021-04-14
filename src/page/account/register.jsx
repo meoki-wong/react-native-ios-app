@@ -44,8 +44,9 @@ export default class Register extends Component {
             userName: userName,
             password: password
         }).then(res=>{
-            Toast.showLoading(res.data.meta.msg)
-        }).catch(err=>{console.error(err)})
+            // Toast.showLoading(res.data.meta.msg)
+            alert(res.data.meta.msg)
+        })
     }
 
     render() {

@@ -34,8 +34,9 @@ export default class Login extends Component {
         request.post('/login', 
         {userName: userName,
         password: password}).then(res=>{
-            Toast.showLoading(res.data.msg)
-        }).catch(err=>console.log(err))
+            Toast.showLoading(res.data.meta.msg)
+            alert(res.data.meta.msg)
+        }).catch(err=>{console.log(err)})
     }
 
     render() {
