@@ -20,7 +20,7 @@ module.exports = (req, res) => {
 
   User.create({ userName, password })
     .then((createUser) => {
-      res.send({
+      res.status(200).send({
         data: { createUser }, // 返回用户的相关信息
         meta: {
           msg: "创建用户成功",

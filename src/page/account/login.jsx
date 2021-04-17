@@ -45,6 +45,7 @@ export default class Login extends Component {
             <ImageBackground style={{ width: '100%', height: '100%' }} source={require('../../image/login-bg.jpeg')}>
                 <View style={styles.container}>
                     <View style={styles.title}>
+
                         <Input
                             placeholder="请输入登录手机号"
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
