@@ -28,7 +28,7 @@ app.use('/api',(req,res,next)=>{
     // 当请求接口是登录或者注册接口时候  放行
     const token = String(req.headers.authorization)
     const username = jwt.decode(token, 'meoki')
-    if(req.url == '/login' || req.url == '/register'){
+    if(req.url == '/login' || req.url == '/register'|| req.url=='/userInfo'){
         next()
         return 
     }

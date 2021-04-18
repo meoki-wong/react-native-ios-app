@@ -6,7 +6,6 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use( config => {
-    console.log('request查看config的相关参数', config)
     Toast.showLoading('请求中。。。')
     return config
 })

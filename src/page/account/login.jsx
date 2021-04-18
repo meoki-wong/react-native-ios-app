@@ -4,7 +4,6 @@ import { Input, Button } from 'react-native-elements'
 import request from '../../utils/request'
 import Toast from "../../utils/Toast";
 export default class Login extends Component {
-
     state = {
         userName: '',
         password: '',
@@ -35,7 +34,7 @@ export default class Login extends Component {
         {userName: userName,
         password: password}).then(res=>{
             Toast.showLoading(res.data.meta.msg)
-            alert(res.data.meta.msg)
+            // alert(res.data.meta.msg)
         }).catch(err=>{console.log(err)})
     }
 

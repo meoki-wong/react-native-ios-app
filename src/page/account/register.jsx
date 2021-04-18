@@ -10,7 +10,7 @@ import  Toast  from "../../utils/Toast";
 export default class Register extends Component {
 
     state = {
-        userName : '',
+        phoneNumber : '',
         password: '',
         isShowValid : false,
         isShowUserName: 1,
@@ -18,35 +18,50 @@ export default class Register extends Component {
     }
 
     onPhoneSubmitEditing = ()=>{
-        let {userName} = this.state
-       if(checkPhone(userName)){
+        let {phoneNumber} = this.state
+       if(checkPhone(phoneNumber)){
            this.setState({isShowValid: false})
        } else {
            this.setState({isShowValid: true})
+           
        }
       
    }
     onRegister = ()=>{
-        const {userName, password} = this.state
-        if(userName){
+        const {phoneNumber, password, isShowValid} = this.state
+        if(phoneNumber){
             this.setState({isShowUserName: 1})
         } else {
             this.setState({isShowUserName: 2})
 
         }
+        if(phoneNumber){
+            if(!checkPhone(phoneNumber)){
+                this.setState({isShowValid: true})
+                return
+            } else {
+                this.setState({isShowValid: false})
+            }
+        }
         if(password){
             this.setState({isShowPsd: 1})
+
         } else {
             this.setState({isShowPsd: 2})
+            return
         }
 
         request.post('/register',{
-            userName: userName,
+            phoneNumber: phoneNumber,
             password: password
         }).then(res=>{
-            // Toast.showLoading(res.data.meta.msg)
-            alert(res.data.meta.msg)
+            Toast.showLoading(res.data.meta.msg)
+            if(res.data.code === '0000'){
+            this.props.navigation.push('UserInfo',{phoneNumber})
+            }
         })
+        // this.props.navigation.push('UserInfo')
+
     }
 
     render() {
@@ -62,9 +77,9 @@ export default class Register extends Component {
                         leftIcon={{ type: 'font-awesome', name: 'phone' }}
                         style={styles.inputBox}
                         maxLength={11}   
-                        errorMessage={isShowValid?'手机号码格式不正确':'', isShowUserName===1?'':'请输入用户名'}
+                        errorMessage={[isShowValid?'手机号码格式不正确':'', isShowUserName===1?'':'请输入用户名']}
                         onSubmitEditing={this.onPhoneSubmitEditing}
-                        onChangeText={value => this.setState({ userName: value })}
+                        onChangeText={value => this.setState({ phoneNumber: value })}
                     />
                     <Input
                         placeholder="请输入密码"

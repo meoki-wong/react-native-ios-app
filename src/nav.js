@@ -12,7 +12,6 @@ function HomeScreen({navigation}) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
       <Button title="登录" onPress={()=>navigation.navigate('Login')}/>
-      <Button title="填写资料" onPress={()=>navigation.navigate('UserInfo')}/>
       <Button title="注册" onPress={()=>navigation.navigate('Register')}/>
     </View>
   );

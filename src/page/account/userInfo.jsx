@@ -1,15 +1,60 @@
 import React, { Component } from 'react'
-import { View, Text, Button, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, Button, ImageBackground, StyleSheet, TouchableOpacity} from 'react-native'
 import { Input } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
+import userInfoStyle from './userInfo.module'
+import request from '../../utils/request'
+import Toast from '../../utils/Toast'
 export default class UserInfo extends Component {
 
     state = {
         isShowValid: false,
-        startdatetime: ''
+        bornTime: '',
+        userName: '',
+        phoneNumber: '',
+        sexy: 1 // 1--->男  2--->女
+    }
+    componentDidMount (){
+        const {phoneNumber} = this.state
+        const routeParam = this.props.route.params.phoneNumber
+        this.setState({phoneNumber: routeParam})
+        console.log('内容是多少', this.props.route);
+    }
+    chooseSexyBoy = ()=>{
+        const {sexy} = this.state
+        this.setState({sexy: 1})
+        console.log('你好啊', sexy);
+        // this.refs.sexy.viewConfig.validAttributes.style.backgroundColor = '#ccc'
+        
+    }
+    chooseSexyGirl = ()=>{
+        const {sexy} = this.state
+        this.setState({sexy: 2})
+        console.log('你好啊', sexy);
+    }
+    enterApp = ()=>{
+        const {isShowValid ,userName, bornTime, sexy, phoneNumber} = this.state
+        console.log('取路由参数', this.props.route);
+        // const phoneNumber = this.props.route.param.phoneNumber
+        if(userName){
+            this.setState({isShowValid: false})
+        } else {
+            this.setState({isShowValid: true})
+        }
+        request.post('/userInfo', {
+            phoneNumber,
+            userName,
+            bornTime,
+            sexy,
+
+        }).then(res=>{
+            Toast.showLoading(res.data.meta.msg)
+            // this.props.navigation.push('进首页')
+        })
+        
     }
     render() {
-        const { isShowValid, startdatetime } = this.state
+        const { isShowValid, bornTime } = this.state
         const dateNow = new Date()
         const currentTime = `${dateNow.getFullYear()}-${dateNow.getMonth()+1}-${dateNow.getDate()+1}`
         return (
@@ -20,8 +65,8 @@ export default class UserInfo extends Component {
                         <Text style={styles.title}>展示你的个性</Text>
                     </View>
                     <View style={styles.header}>
-                        <View style={styles.headerBoy}><Text>男</Text></View>
-                        <View style={styles.headerGril}><Text>女</Text></View>
+                        <TouchableOpacity ref={"sexy"} style={styles.headerBoy}  onPress={this.chooseSexyBoy}><Text>男</Text></TouchableOpacity>
+                        <TouchableOpacity rer={"sexy"} style={styles.headerGril} onPress={this.chooseSexyGirl}><Text>女</Text></TouchableOpacity>
                     </View>
                     <View style={styles.inputBox}>
                         <Input
@@ -36,7 +81,7 @@ export default class UserInfo extends Component {
                         <DatePicker
                             mode='datetime'
                             style={{ width: '100%' }}
-                            date={startdatetime}
+                            date={bornTime}
                             mode="date"
                             placeholder='设置破壳日'
                             format="YYYY-MM-DD"
@@ -61,9 +106,14 @@ export default class UserInfo extends Component {
 
                                 } // 字体样式
                             }}
-                            onDateChange={(date) => { this.setState({ startdatetime: date })}}
+                            onDateChange={(date) => { this.setState({ bornTime: date })}}
                         />
-
+                        <View style={styles.buttonEnter}>
+                            <Button 
+                            onPress={this.enterApp}
+                            title={'开启旅程'}
+                            />
+                        </View>
                     </View>
                 </View>
             </ImageBackground>
@@ -71,35 +121,4 @@ export default class UserInfo extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    title: {
-        color: '#cad',
-        fontSize: 30,
-        lineHeight: 40,
-        marginTop: 20,
-        marginLeft: 30,
-        fontWeight: 'bold'
-    },
-    header: {
-        width: '100%',
-        height: 70,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignSelf: 'center',
-        marginTop: 50,
-        paddingHorizontal: 40
-    },
-    headerBoy: {
-        width: 80,
-        height: 80,
-        backgroundColor: 'yellow'
-    },
-    headerGril: {
-        width: 80,
-        height: 80,
-        backgroundColor: 'blue'
-    },
-    inputBox: {
-        marginTop: 50
-    }
-})
+const styles = StyleSheet.create(userInfoStyle)

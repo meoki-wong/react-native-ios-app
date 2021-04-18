@@ -1,8 +1,8 @@
 const {dbServer} = require('../init')
 const Sequelize = require('sequelize')
 const User = dbServer.define('users', {
-    userName: {
-    type: Sequelize.STRING,
+    phoneNumber: {
+    type: Sequelize.NUMBER,
     allowNull: false,
     unique: false
     },
@@ -10,7 +10,22 @@ const User = dbServer.define('users', {
         type: Sequelize.STRING,
         allowNull: false,
         unique: false
-    }
+    },
+    // bornTime:{
+    //     type: Sequelize.STRING,
+    //     allowNull: false,
+    //     unique: false
+    // },
+    // sexy:{
+    //     type: Sequelize.STRING,
+    //     allowNull: false,
+    //     unique: false
+    // },
+    // phoneNumber:{
+    //     type: Sequelize.STRING,
+    //     allowNull: false,
+    //     unique: false
+    // }
 })
 
 User.sync().then(()=>{
