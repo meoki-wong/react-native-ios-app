@@ -3,6 +3,9 @@ import { Text, View, ImageBackground, StyleSheet } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import request from '../../utils/request'
 import Toast from "../../utils/Toast";
+import {inject, observer} from 'mobx-react'
+@inject('RootStore')
+@observer
 export default class Login extends Component {
     state = {
         userName: '',
@@ -31,10 +34,13 @@ export default class Login extends Component {
             this.setState({isShowPwd: 2})
         }
         request.post('/login', 
-        {userName: userName,
+        {phoneNumber: userName,
         password: password}).then(res=>{
+            const {userId, token} = res.data
             Toast.showLoading(res.data.meta.msg)
             // alert(res.data.meta.msg)
+            this.props.RootStore.getUserInfo(userName, userId, token)
+            console.log('请求的内容',this.props.RootStore);
         }).catch(err=>{console.log(err)})
     }
 

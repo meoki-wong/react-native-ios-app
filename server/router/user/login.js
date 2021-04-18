@@ -1,17 +1,16 @@
 const jwt = require('jsonwebtoken')
 const {User} = require('../../database/model/Users')
 
-module.exports = async (req,res)=>{
-    const {userName, password} = req.body
+module.exports =  (req,res)=>{
+    const {phoneNumber, password} = req.body
     /* 
     1.验证登录的用户名是否存在----->不存在直接报400 并且return（手机号登录可以忽略本验证）
     2.用户名存在后判断密码是否存在 ------>不存在直接报400 并且return
     3.存在且登录成功  直接返回token
     */
     // 首先判断用户名是否存在
-    const findUser = await User.findOne({where: {userName}})
-    
-    if(!findUser){
+    User.findOne({where: {phoneNumber}}).then(findUser=>{
+         if(!findUser){
         res.send({
             data: null,
             meta:{
@@ -20,7 +19,7 @@ module.exports = async (req,res)=>{
         })
         return 
     }
-    if(userName != findUser.userName || password != findUser.password){
+    if(phoneNumber != findUser.phoneNumber || password != findUser.password){
         res.send({
             data: null,
             meta:{
@@ -28,17 +27,23 @@ module.exports = async (req,res)=>{
             }
         })
         return
-    }
-
+    } 
+    const userId = findUser.id
     // 创建token 返回给前端
-    const token = await jwt.sign({userName}, 'meoki')
+    const token = jwt.sign({phoneNumber}, 'meoki')
     res.send({
         data: null,
         token,
+        userId,
         meta:{
             msg: '登录成功'
         }
     })
+     })
+    
+    
+
+   
     // 未实现mysql数据库连接的时候   先写死
     // if(userName ==='meoki' && password ==='12345'){
     //     const token = jwt.sign({userName}, 'meoki')

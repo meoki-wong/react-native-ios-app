@@ -25,4 +25,8 @@ const userInfo = dbServer.define('userInfo',{
     }
 })
 
+userInfo.sync().then(()=>{
+    console.log('模型同步成功')
+}).catch(err=>{console.error(err)})
+
 module.exports = {userInfo}

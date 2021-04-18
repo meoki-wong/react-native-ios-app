@@ -5,6 +5,11 @@ import DatePicker from 'react-native-datepicker'
 import userInfoStyle from './userInfo.module'
 import request from '../../utils/request'
 import Toast from '../../utils/Toast'
+import {inject, observer} from 'mobx-react'
+@inject(' RootStore')
+@observer 
+
+
 export default class UserInfo extends Component {
 
     state = {
@@ -48,7 +53,10 @@ export default class UserInfo extends Component {
             sexy,
 
         }).then(res=>{
+            // const {token,}
             Toast.showLoading(res.data.meta.msg)
+            console.log(res.data);
+            // this.props.RootStore.getUserInfo(res.data.)
             // this.props.navigation.push('进首页')
         })
         
