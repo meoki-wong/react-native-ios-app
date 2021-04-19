@@ -5,9 +5,6 @@ import DatePicker from 'react-native-datepicker'
 import userInfoStyle from './userInfo.module'
 import request from '../../utils/request'
 import Toast from '../../utils/Toast'
-import {inject, observer} from 'mobx-react'
-@inject(' RootStore')
-@observer 
 
 
 export default class UserInfo extends Component {
@@ -19,23 +16,16 @@ export default class UserInfo extends Component {
         phoneNumber: '',
         sexy: 1 // 1--->男  2--->女
     }
-    componentDidMount (){
-        const {phoneNumber} = this.state
-        const routeParam = this.props.route.params.phoneNumber
-        this.setState({phoneNumber: routeParam})
-        console.log('内容是多少', this.props.route);
-    }
+   
     chooseSexyBoy = ()=>{
         const {sexy} = this.state
         this.setState({sexy: 1})
-        console.log('你好啊', sexy);
         // this.refs.sexy.viewConfig.validAttributes.style.backgroundColor = '#ccc'
         
     }
     chooseSexyGirl = ()=>{
         const {sexy} = this.state
         this.setState({sexy: 2})
-        console.log('你好啊', sexy);
     }
     enterApp = ()=>{
         const {isShowValid ,userName, bornTime, sexy, phoneNumber} = this.state
@@ -55,9 +45,9 @@ export default class UserInfo extends Component {
         }).then(res=>{
             // const {token,}
             Toast.showLoading(res.data.meta.msg)
-            console.log(res.data);
             // this.props.RootStore.getUserInfo(res.data.)
-            // this.props.navigation.push('进首页')
+            this.props.navigation.push('Login') // 进登录界面
+            
         })
         
     }

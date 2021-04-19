@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, StyleSheet } from 'react-native'
+import { Text, View, ImageBackground, StyleSheet, TouchableOpacity, AsyncStorageStatic} from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import request from '../../utils/request'
 import Toast from "../../utils/Toast";
@@ -21,6 +21,9 @@ export default class Login extends Component {
         // 密码输入后点击return时
         console.log(userName, password);
     }
+    registerUrl = ()=>{
+        this.props.navigation.push('Register')
+    }
     onLogin = ()=>{
         const {userName, password, isShowName, isShowPwd} = this.state
         if(userName){
@@ -39,8 +42,14 @@ export default class Login extends Component {
             const {userId, token} = res.data
             Toast.showLoading(res.data.meta.msg)
             // alert(res.data.meta.msg)
+
+            // 存储数据到mobx中
             this.props.RootStore.getUserInfo(userName, userId, token)
-            console.log('请求的内容',this.props.RootStore);
+            // 存储数据到本地缓存中
+            AsyncStorageStatic.setItem('userInfo', JSON.stringify({
+                userName, userId, token
+            }))
+            this.props.navigation.push('Homes')
         }).catch(err=>{console.log(err)})
     }
 
@@ -75,6 +84,9 @@ export default class Login extends Component {
                             title="登录"
                         />
                     </View>
+                    <TouchableOpacity onPress={this.registerUrl} style={{alignSelf: 'center'}}>
+                        <Text style={{color: 'blue', fontSize: 16}}>没有账号？点击注册</Text>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         )
@@ -83,6 +95,7 @@ export default class Login extends Component {
 }
 const styles = StyleSheet.create({
     title: {
-        marginTop: '55%'
+        marginTop: '55%',
+        marginBottom: 100
     }
 })

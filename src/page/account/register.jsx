@@ -52,8 +52,8 @@ export default class Register extends Component {
         }
 
         request.post('/register',{
-            phoneNumber: phoneNumber,
-            password: password
+            phoneNumber,
+            password
         }).then(res=>{
             Toast.showLoading(res.data.meta.msg)
             if(res.data.code === '0000'){

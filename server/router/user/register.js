@@ -4,8 +4,7 @@ module.exports = (req, res) => {
   const { phoneNumber, password } = req.body;
   if(phoneNumber === '' || password === '') return
    User.findOne({ where: { phoneNumber } })
-    .then((model) => {
-      console.log('----->',res)
+    .then(model => {
       if (model) {
         res.send({
           code: '9999',

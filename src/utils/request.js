@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Toast from "../utils/Toast";
+import {inject} from 'mobx-react'
 
 const instance = axios.create({
     baseURL: 'http://localhost:9000/api'
@@ -7,6 +8,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use( config => {
     Toast.showLoading('请求中。。。')
+    console.log('----->',config)
     return config
 })
 

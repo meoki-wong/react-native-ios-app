@@ -2,7 +2,7 @@ const {dbServer} = require('../init')
 const Sequelize = require('sequelize')
 const User = dbServer.define('users', {
     phoneNumber: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.STRING,
     allowNull: false,
     unique: false
     },
