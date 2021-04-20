@@ -5,7 +5,7 @@ export default class home extends Component {
     render() {
         return (
             <View>
-                <Text>首页</Text>
+                <Text>好友列表</Text>
             </View>
         )
     }

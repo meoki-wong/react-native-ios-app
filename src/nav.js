@@ -8,6 +8,7 @@ import Register from './page/account/register.jsx'
 import Login from './page/account/login'
 import UserInfo from './page/account/userInfo'
 import Homes from './page/home/home'
+import Tabbar from './page/tabbar/tabbar'
 import {inject,observer} from 'mobx-react'
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ export default class Nav extends Component{
     super(props)
     this.state = {
     // 判断用户登录界面中是否有token 
-    initialRouteName: this.props.RootStore.token? 'Homes': 'Login'
+    initialRouteName: this.props.RootStore.token? 'Tabbar': 'Login'
   }
   }
   
@@ -33,7 +34,7 @@ export default class Nav extends Component{
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="UserInfo" component={UserInfo} />
           <Stack.Screen name="Register" component={Register} />
-          <Stack.Screen name="Homes" component={Homes} />
+          <Stack.Screen name="Tabbar" component={Tabbar} />
         </Stack.Navigator>
       </NavigationContainer>
     );

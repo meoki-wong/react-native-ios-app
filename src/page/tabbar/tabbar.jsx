@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import TabNavigator from 'react-native-tab-navigator';
+import Home from '../home/home'
+import Group from '../group/group'
+import FriendCircle from '../friendCircle/friendCircle'
+import Mine from '../mine/mine'
 export default class tabbar extends Component {
     state = {
-        selectedTab: ''
+        selectedTab: 'home'
     }
     render() {
         return (
@@ -15,35 +19,37 @@ export default class tabbar extends Component {
                         // renderIcon={() => <Image source={...} />}
                         // renderSelectedIcon={() => <Image source={...} />}
                         // badgeText="1"  tabbar右上角内容
+
                         onPress={() => this.setState({ selectedTab: 'home' })}>
-                        {'这里插入组件用的'}
+                            
+                        <Home />
                     </TabNavigator.Item>
                     <TabNavigator.Item
-                        selected={this.state.selectedTab === 'profile'}
+                        selected={this.state.selectedTab === 'friend'}
                         title="朋友圈"
                         // renderIcon={() => <Image source={...} />}
                         // renderSelectedIcon={() => <Image source={...} />}
                         // renderBadge={() => <CustomBadgeView />}
-                        onPress={() => this.setState({ selectedTab: 'profile' })}>
-                        {'这里插入组件用的'}
+                        onPress={() => this.setState({ selectedTab: 'friend' })}>
+                        <FriendCircle />
                     </TabNavigator.Item>
                     <TabNavigator.Item
-                        selected={this.state.selectedTab === 'profile'}
+                        selected={this.state.selectedTab === 'group'}
                         title="好友"
                         // renderIcon={() => <Image source={...} />}
                         // renderSelectedIcon={() => <Image source={...} />}
                         // renderBadge={() => <CustomBadgeView />}
-                        onPress={() => this.setState({ selectedTab: 'profile' })}>
-                        {'这里插入组件用的'}
+                        onPress={() => this.setState({ selectedTab: 'group' })}>
+                        <Group />
                     </TabNavigator.Item>
                     <TabNavigator.Item
-                        selected={this.state.selectedTab === 'profile'}
+                        selected={this.state.selectedTab === 'mine'}
                         title="我"
                         // renderIcon={() => <Image source={...} />}
                         // renderSelectedIcon={() => <Image source={...} />}
                         // renderBadge={() => <CustomBadgeView />}
-                        onPress={() => this.setState({ selectedTab: 'profile' })}>
-                        {'这里插入组件用的'}
+                        onPress={() => this.setState({ selectedTab: 'mine' })}>
+                        <Mine />
                     </TabNavigator.Item>
                 
                 </TabNavigator>
