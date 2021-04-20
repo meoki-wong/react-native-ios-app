@@ -7,7 +7,7 @@ export default class tabbar extends Component {
     }
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <TabNavigator>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'home'}
@@ -16,7 +16,7 @@ export default class tabbar extends Component {
                         // renderSelectedIcon={() => <Image source={...} />}
                         // badgeText="1"  tabbar右上角内容
                         onPress={() => this.setState({ selectedTab: 'home' })}>
-                       <Text>你好</Text>
+                        <Text>你好</Text>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'profile'}
@@ -45,9 +45,9 @@ export default class tabbar extends Component {
                         onPress={() => this.setState({ selectedTab: 'profile' })}>
                         {'这里插入组件用的'}
                     </TabNavigator.Item>
-                
+
                 </TabNavigator>
-                
+
             </View>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, StyleSheet, TouchableOpacity, AsyncStorageStatic} from 'react-native'
+import { Text, View, ImageBackground, StyleSheet, TouchableOpacity, AsyncStorage} from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import request from '../../utils/request'
 import Toast from "../../utils/Toast";
@@ -46,7 +46,7 @@ export default class Login extends Component {
             // 存储数据到mobx中
             this.props.RootStore.getUserInfo(userName, userId, token)
             // 存储数据到本地缓存中
-            AsyncStorageStatic.setItem('userInfo', JSON.stringify({
+            AsyncStorage.setItem('userInfo', JSON.stringify({
                 userName, userId, token
             }))
             this.props.navigation.push('Homes')

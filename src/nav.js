@@ -16,12 +16,20 @@ const Stack = createStackNavigator();
 
 
 export default class Nav extends Component{
-  state = {}
+  constructor(props){
+    super(props)
+    this.state = {
+    // 判断用户登录界面中是否有token 
+    initialRouteName: this.props.RootStore.token? 'Homes': 'Login'
+  }
+  }
+  
 
   render(){
+    const {initialRouteName} = this.state
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={Login}>
+        <Stack.Navigator initialRouteName={initialRouteName}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="UserInfo" component={UserInfo} />
           <Stack.Screen name="Register" component={Register} />
