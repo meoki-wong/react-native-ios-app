@@ -5,7 +5,7 @@ import Home from '../home/home'
 import Group from '../group/group'
 import FriendCircle from '../friendCircle/friendCircle'
 import Mine from '../mine/mine'
-export default class tabbar extends Component {
+export default class Tabbar extends Component {
     state = {
         selectedTab: 'home'
     }

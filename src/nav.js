@@ -7,7 +7,6 @@ import 'react-native-gesture-handler';
 import Register from './page/account/register.jsx'
 import Login from './page/account/login'
 import UserInfo from './page/account/userInfo'
-import Homes from './page/home/home'
 import Tabbar from './page/tabbar/tabbar'
 import {inject,observer} from 'mobx-react'
 const Stack = createStackNavigator();

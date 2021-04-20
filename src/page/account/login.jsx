@@ -49,7 +49,7 @@ export default class Login extends Component {
             AsyncStorage.setItem('userInfo', JSON.stringify({
                 userName, userId, token
             }))
-            this.props.navigation.push('Homes')
+            this.props.navigation.push('Tabbar')
         }).catch(err=>{console.log(err)})
     }
 
