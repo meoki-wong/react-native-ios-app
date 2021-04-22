@@ -8,6 +8,7 @@ import Register from './page/account/register.jsx'
 import Login from './page/account/login'
 import UserInfo from './page/account/userInfo'
 import Tabbar from './page/tabbar/tabbar'
+import LineTalk from './page/onlineTalk/onlineTalk'
 import {inject,observer} from 'mobx-react'
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ export default class Nav extends Component{
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="UserInfo" component={UserInfo} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="LineTalk" component={LineTalk} />
           <Stack.Screen name="Tabbar" component={Tabbar} />
         </Stack.Navigator>
       </NavigationContainer>

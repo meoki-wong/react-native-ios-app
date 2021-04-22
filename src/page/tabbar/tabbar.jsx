@@ -19,10 +19,8 @@ export default class Tabbar extends Component {
                         // renderIcon={() => <Image source={...} />}
                         // renderSelectedIcon={() => <Image source={...} />}
                         // badgeText="1"  tabbar右上角内容
-
                         onPress={() => this.setState({ selectedTab: 'home' })}>
-                            
-                        <Home />
+                        <Home navigation={this.props.navigation}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'friend'}
