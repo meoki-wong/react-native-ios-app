@@ -16,9 +16,9 @@ export default class Swipers extends Component {
         autoplayTimeout={4}
         autoplay={true}
         showsButtons={true}>
-        <Image source={require('../image/login-bg.jpeg')} style={styles.img} />
-        <Image source={require('../image/login-bg.jpeg')} style={styles.img} />
-        <Image source={require('../image/login-bg.jpeg')} style={styles.img} />
+        <Image source={require('../image/ad.jpeg')} style={styles.img} />
+        <Image source={require('../image/ad.jpeg')} style={styles.img} />
+        <Image source={require('../image/ad.jpeg')} style={styles.img} />
     </Swiper>
         )   
     }
