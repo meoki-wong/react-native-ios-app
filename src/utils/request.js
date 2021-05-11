@@ -8,7 +8,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use( config => {
     Toast.showLoading('请求中。。。')
-    console.log('----->',config)
     return config
 })
 
