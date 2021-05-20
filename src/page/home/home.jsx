@@ -16,7 +16,12 @@ export default class Home extends Component {
     }
 
     addHole = () => {
-        this.setState({visible: true})
+        // 父组件传值判断是否开启dialog  
+        this.setState({ visible: true })
+    }
+    closeDialogFunc = (value) => {
+        // 接收子组件的传值判断是否显示或者隐藏
+        this.setState({ visible: value })
     }
 
     render() {
@@ -25,7 +30,8 @@ export default class Home extends Component {
         return (
 
             <View>
-               <Dialogs propsShow = {visible}/>
+
+                <Dialogs propsShow={visible} closeDialog={this.closeDialogFunc} />
                 <View style={{ width: '100%', height: 250 }}>
                     <Swipers />
                 </View>
@@ -40,7 +46,7 @@ export default class Home extends Component {
                 {/* 底部内容 */}
                 <View style={styles.moodBox}>
                     <TouchableOpacity style={styles.showMode}
-                    onPress={this.addHole}>
+                        onPress={this.addHole}>
                         <Text style={styles.gridText}>+</Text>
                     </TouchableOpacity>
                     <View style={styles.holeBox}>

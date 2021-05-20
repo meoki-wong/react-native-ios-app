@@ -7,39 +7,44 @@ import Dialog, { DialogContent, SlideAnimation, DialogTitle, DialogFooter, Dialo
 export default class Dialogs extends Component {
 
 
+
+
   state = {
-    showDialog: false
+    showDialog: true
   }
   
-  render() {    
+  render() {
+    
     return (
       <View>
         <Dialog
-          visible={this.state.showDialog}
+          visible={this.props.propsShow}
           dialogAnimation={new SlideAnimation({
             slideFrom: 'bottom',
           })} // 动画效果
           dialogTitle={<DialogTitle title="添加你的树洞" />}
           // onTouchOutside={()=>this.setState({showDialog: false})}
 
-
           footer={
             <DialogFooter>
               <DialogButton
-                text="CANCEL"
+                text="取消"
                 onPress={() => {
-                  this.setState({ showDialog: false })
+                  // 父子组件传值 控制dialog组件的显示与隐藏
+                  this.props.closeDialog(false)
                 }}
               />
               <DialogButton
-                text="OK"
-                onPress={() => { }}
+                text="确定"
+                onPress={() => { 
+                  this.props.closeDialog(false)
+                }}
               />
             </DialogFooter>
           }
         >
           <DialogContent>
-            <Text>你好</Text>
+            <Text>添加你的树洞</Text>
           </DialogContent>
         </Dialog>
       </View>
