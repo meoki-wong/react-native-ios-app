@@ -5,16 +5,23 @@ import { View, Button, Text, TextInput, StyleSheet } from 'react-native'
 import Dialog, { DialogContent, SlideAnimation, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog';
 import dialogStyle from './dialog.module'
 import request from '../../../utils/request'
+import { inject, observer } from "mobx-react";
+import  Toast  from "../../../utils/Toast";
+@inject('RootStore')
+@observer
 export default class Dialogs extends Component {
 
 
-  closeDialogBox = ()=>{
+  sureDialogBox = ()=>{
+    console.log('......', Date())
     request.post('/treeHole', {
-      innerText:'',
-      sendTime:'',
-      userName: ''
+      innerText: this.state.value,
+      sendTime: Date(),
+      userName: this.props.RootStore.userId
     }).then(res=>{
-      console.log('====>', res.data);
+      console.log(res.data.meta.msg)
+      Toast.showLoading(res.data.meta.msg)
+      this.setState({value: ''})
     })
     // 父子组件传值 控制dialog组件的显示与隐藏
     this.props.closeDialog(false)
@@ -42,13 +49,13 @@ export default class Dialogs extends Component {
             <DialogFooter>
               <DialogButton
                 text="取消"
-                onPress={this.closeDialogBox}
-              />
-              <DialogButton
-                text="确定"
                 onPress={() => {
                   this.props.closeDialog(false)
                 }}
+              />
+              <DialogButton
+                text="确定"
+                onPress={this.sureDialogBox}
               />
             </DialogFooter>
           }
