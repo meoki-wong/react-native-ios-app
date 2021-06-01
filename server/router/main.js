@@ -7,8 +7,9 @@ main.post('/login' ,require('./user/login'))
 // 用户信息创建
 main.post('/userInfo',require('./user/userinfo'))
 
-//首页树洞功能
-main.post('/treeHole', require('./home/treeHole'))
+//首页发送树洞功能
+main.post('/getTreeHole', require('./home/getTreeHole'))
+main.post('/sendTreeHole', require('./home/sendTreeHole'))
 main.get('/test', (req,res)=>{
     res.send('ok')
 })

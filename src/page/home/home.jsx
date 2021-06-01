@@ -4,7 +4,7 @@ import Dialogs from "./component/dialog";
 import Swipers from "../../component/swiper";
 import homeStyle from './home.module';
 // import Dialog, { DialogContent, SlideAnimation, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog';
-
+import request from '../../utils/request'
 
 export default class Home extends Component {
     state = {
@@ -15,6 +15,13 @@ export default class Home extends Component {
         visible: false
     }
 
+    componentDidMount () {
+        // 测试接口内容
+        request.post('/sendTreeHole').then(res => {
+            const holeVal = []
+
+        })
+    }
     addHole = () => {
         // 父组件传值判断是否开启dialog  
         this.setState({ visible: true })

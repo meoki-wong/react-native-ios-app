@@ -11,15 +11,19 @@ import  Toast  from "../../../utils/Toast";
 @observer
 export default class Dialogs extends Component {
 
-
+  componentDidMount () {
+    request.post('/sendTreeHole').then(res=>{
+      console.log('////', res.data.innerText);
+    })
+  }
   sureDialogBox = ()=>{
     console.log('......', Date())
-    request.post('/treeHole', {
+    request.post('/getTreeHole', {
       innerText: this.state.value,
       sendTime: Date(),
       userName: this.props.RootStore.userId
     }).then(res=>{
-      console.log(res.data.meta.msg)
+      console.log(res.data)
       Toast.showLoading(res.data.meta.msg)
       this.setState({value: ''})
     })
@@ -42,7 +46,7 @@ export default class Dialogs extends Component {
           dialogAnimation={new SlideAnimation({
             slideFrom: 'bottom',
           })} // 动画效果
-          dialogTitle={<DialogTitle title="添加你的树洞" />}
+          dialogTitle={<DialogTitle title= "添加你的树洞" />}
           // onTouchOutside={()=>this.setState({showDialog: false})}
 
           footer={

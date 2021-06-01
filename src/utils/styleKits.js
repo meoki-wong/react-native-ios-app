@@ -13,7 +13,8 @@ export const screnHeight = Dimensions.get('window').height
 /**
  * 将px转为dp
  @param {Number} elePx 元素的宽度或者高度  单位px
- *  */ 
+ *  
+ */ 
 
 
 
