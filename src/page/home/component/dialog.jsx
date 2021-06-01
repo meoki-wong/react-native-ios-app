@@ -17,7 +17,6 @@ export default class Dialogs extends Component {
     })
   }
   sureDialogBox = ()=>{
-    console.log('......', Date())
     request.post('/getTreeHole', {
       innerText: this.state.value,
       sendTime: Date(),

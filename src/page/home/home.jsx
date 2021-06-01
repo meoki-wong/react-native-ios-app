@@ -18,7 +18,8 @@ export default class Home extends Component {
     componentDidMount () {
         // 测试接口内容
         request.post('/sendTreeHole').then(res => {
-            const holeVal = []
+            let {data} = res.data
+           this.setState({holeMsgData: data})
 
         })
     }
@@ -59,7 +60,7 @@ export default class Home extends Component {
                     <View style={styles.holeBox}>
                         {holeMsgData.map(item => {
                             return <TouchableOpacity style={styles.holeMsg}>
-                                <Text style={styles.gridText}>∆  {item}</Text>
+                                <Text style={styles.gridText}>∆  {item.innerText}</Text>
                             </TouchableOpacity>
                         })}
 

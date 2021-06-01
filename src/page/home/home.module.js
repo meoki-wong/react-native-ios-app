@@ -35,11 +35,13 @@ const homeStyle = {
     width: 200,
     height: 250,
     marginTop: 25,
+    overflow: 'hidden',
     justifyContent: 'space-around',
   },
   holeMsg:{
+    height: 18,
     borderBottomWidth: 2,
-    borderBottomColor: '#ccc'
+    borderBottomColor: '#ccc',
   }
   
 };
