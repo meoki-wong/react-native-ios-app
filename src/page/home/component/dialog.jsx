@@ -13,7 +13,6 @@ export default class Dialogs extends Component {
 
   componentDidMount () {
     request.post('/sendTreeHole').then(res=>{
-      console.log('////', res.data.innerText);
     })
   }
   sureDialogBox = ()=>{
@@ -22,13 +21,13 @@ export default class Dialogs extends Component {
       sendTime: Date(),
       userName: this.props.RootStore.userId
     }).then(res=>{
-      console.log(res.data)
       Toast.showLoading(res.data.meta.msg)
       this.setState({value: ''})
     })
     // 父子组件传值 控制dialog组件的显示与隐藏
     this.props.closeDialog(false)
   }
+
 
   state = {
     showDialog: true,

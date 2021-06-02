@@ -3,7 +3,6 @@ const { innerTreeHole } = require("../../database/model/getTreeHole");
 module.exports = (req, res) => {
   const { innerText, userName, sendTime } = req.body;
   if (innerText) {
-      console.log('====>', innerTreeHole.findAll())
     innerTreeHole.create({ innerText, userName, sendTime }).then((treeHole) => {
       res.send({
         code: 200,

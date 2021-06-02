@@ -29,7 +29,6 @@ export default class UserInfo extends Component {
     }
     enterApp = ()=>{
         const {isShowValid ,userName, bornTime, sexy, phoneNumber} = this.state
-        console.log('取路由参数', this.props.route);
         // const phoneNumber = this.props.route.param.phoneNumber
         if(userName){
             this.setState({isShowValid: false})

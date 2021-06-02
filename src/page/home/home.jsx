@@ -8,37 +8,42 @@ import request from '../../utils/request'
 
 export default class Home extends Component {
     state = {
-        gridData: ['点我', '点我', '点我', '点我', '点我', '点我', '点我', '更多',],
-        holeMsgData: ['fdsfjhfjsdfhsdf', 'fksdfsdnfdsmnmnfklsd', 'dsfsgfngegekl',
-            'fdsfjhfjsdfhsdf', 'fksdfsdnfdsmnmnfklsd', 'dsfsgfngegekl',
-            'fdsfjhfjsdfhsdf', 'fksdfsdnfdsmnmnfklsd', 'dsfsgfngegekl',],
+        gridData: ['点我', '点我', '点我', '点我', '点我', '点我', '点我', '更多'],
+        holeMsgData: [],
         visible: false
     }
 
     componentDidMount () {
         // 测试接口内容
+        setInterval(() => {
+            this.getTreeHoleMsg()
+        }, 5000);
+    }
+    addHole = () => {
+        // 父组件传值判断是否开启dialog  
+        this.setState({ visible: true })
+        
+    }
+    closeDialogFunc = (value) => {
+        // 接收子组件的传值判断是否显示或者隐藏
+        this.setState({ visible: value })
+        if(!value) {
+            this.getTreeHoleMsg()
+        }
+    }
+    getTreeHoleMsg = () => {
         request.post('/sendTreeHole').then(res => {
             let {data} = res.data
            this.setState({holeMsgData: data})
 
         })
     }
-    addHole = () => {
-        // 父组件传值判断是否开启dialog  
-        this.setState({ visible: true })
-    }
-    closeDialogFunc = (value) => {
-        // 接收子组件的传值判断是否显示或者隐藏
-        this.setState({ visible: value })
-    }
 
     render() {
 
         const { gridData, holeMsgData, visible } = this.state
         return (
-
             <View>
-
                 <Dialogs propsShow={visible} closeDialog={this.closeDialogFunc} />
                 <View style={{ width: '100%', height: 250 }}>
                     <Swipers />
