@@ -15,16 +15,17 @@ export default class Home extends Component {
 
     componentDidMount () {
         // 测试接口内容
-        setInterval(() => {
+        // setInterval(() => {
             this.getTreeHoleMsg()
-        }, 5000);
+        // }, 5000);
     }
     addHole = () => {
         // 父组件传值判断是否开启dialog  
         this.setState({ visible: true })
         
     }
-    closeDialogFunc = (value) => {
+    closeDialogFunc = (value) => { // 开关弹窗 后期使用redux重构
+        console.log('=======>value', value)
         // 接收子组件的传值判断是否显示或者隐藏
         this.setState({ visible: value })
         if(!value) {
@@ -63,7 +64,7 @@ export default class Home extends Component {
                         <Text style={styles.gridText}>+</Text>
                     </TouchableOpacity>
                     <View style={styles.holeBox}>
-                        {holeMsgData.map(item => {
+                        {holeMsgData.splice(holeMsgData.length-10, 10).map(item => {
                             return <TouchableOpacity style={styles.holeMsg}>
                                 <Text style={styles.gridText}>∆  {item.innerText}</Text>
                             </TouchableOpacity>

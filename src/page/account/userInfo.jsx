@@ -18,13 +18,11 @@ export default class UserInfo extends Component {
     }
    
     chooseSexyBoy = ()=>{
-        const {sexy} = this.state
         this.setState({sexy: 1})
         // this.refs.sexy.viewConfig.validAttributes.style.backgroundColor = '#ccc'
         
     }
     chooseSexyGirl = ()=>{
-        const {sexy} = this.state
         this.setState({sexy: 2})
     }
     enterApp = ()=>{

@@ -16,11 +16,13 @@ export default class Dialogs extends Component {
     })
   }
   sureDialogBox = ()=>{
+    console.log('=====>出发了')
     request.post('/getTreeHole', {
       innerText: this.state.value,
       sendTime: Date(),
       userName: this.props.RootStore.userId
     }).then(res=>{
+      console.log('----->树洞传值', res)
       Toast.showLoading(res.data.meta.msg)
       this.setState({value: ''})
     })
@@ -44,7 +46,7 @@ export default class Dialogs extends Component {
           dialogAnimation={new SlideAnimation({
             slideFrom: 'bottom',
           })} // 动画效果
-          dialogTitle={<DialogTitle title= "添加你的树洞" />}
+          dialogTitle={<DialogTitle title= "添加你的树洞" maxlength={15}/>}
           // onTouchOutside={()=>this.setState({showDialog: false})}
 
           footer={

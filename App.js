@@ -12,7 +12,6 @@ export default class App extends Component {
     if(userStr){
       RootStore.getUserInfo(userStr.phoneNumber, userStr.userId, userStr.token)
     }
-    console.log('userInfo的相关参数',JSON.parse(userInfo).token)
   }
   state = {
 

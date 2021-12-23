@@ -39,9 +39,13 @@ const homeStyle = {
     justifyContent: 'space-around',
   },
   holeMsg:{
-    height: 18,
+    height: 15,
+    lineHeight: 10,
     borderBottomWidth: 2,
     borderBottomColor: '#ccc',
+    display: 'flex',
+    alignItems: 'flex-start',
+    
   }
   
 };
