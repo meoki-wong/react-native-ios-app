@@ -3,8 +3,8 @@ import Toast from "../utils/Toast";
 
 import { AsyncStorage } from "react-native";
 const instance = axios.create({
-    // baseURL: 'http:39.105.153.195/api'
-    baseURL: 'http://localhost:10010/api'
+    baseURL: 'http:39.105.153.195/api'
+    // baseURL: 'http://localhost:10010/api'
 })
 instance.interceptors.request.use( async config => {
     // 在请求头中加入token  每次校验接口是否存在token
