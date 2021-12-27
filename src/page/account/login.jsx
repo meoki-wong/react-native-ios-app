@@ -36,9 +36,9 @@ export default class Login extends Component {
         } else {
             this.setState({isShowPwd: 2})
         }
-        request.post('/login', 
-        {phoneNumber: userName,
-        password: password}).then(res=>{
+        request.post('/login', {
+            data: {phoneNumber: userName, password: password}
+        }).then(res=>{
             const {userId, token} = res.data
             Toast.showLoading(res.data.meta.msg)
             // alert(res.data.meta.msg)
@@ -50,7 +50,7 @@ export default class Login extends Component {
                 userName, userId, token
             }))
             this.props.navigation.push('Tabbar')
-        }).catch(err=>{console.log(err)})
+        }).catch(err=>{console.log('登录错误信息：', err)})
     }
 
     render() {
@@ -65,7 +65,7 @@ export default class Login extends Component {
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             style={styles.inputBox}
                             maxLength={11}
-                            errorMessage={isShowValid ? '手机号码格式不正确' : '',isShowName===1? '':'请输入登录账号'}
+                            errorMessage={isShowValid ? '手机号码格式不正确' : '' ,isShowName===1? '':'请输入登录账号'}
                             onSubmitEditing={this.onUserNameSubmitEditing}
                             onChangeText={value => this.setState({ userName: value })}
 
