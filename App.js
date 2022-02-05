@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, AsyncStorage} from 'react-native'
+import { NativeBaseProvider, Box } from "native-base";
 import Nav from './src/nav'
 import {Provider} from 'mobx-react'
 import RootStore from './src/mobx/store'
@@ -21,7 +22,9 @@ export default class App extends Component {
     return (
       <View style={{flex: 1}}>
         <Provider RootStore={ RootStore }>
-          <Nav></Nav>    
+          <NativeBaseProvider>
+            <Nav></Nav>
+          </NativeBaseProvider>
         </Provider>
       </View>
     )

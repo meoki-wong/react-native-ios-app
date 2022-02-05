@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native'
 import friendStyl from './friendStyl'
+import HasFirendsDetails from './components/HasFirendsDetails'
 export default class FriendCircle extends Component {
 
 
@@ -23,11 +24,12 @@ export default class FriendCircle extends Component {
                 </View>
                 <View style={styles.firendContainer}>
                     {/* 底部内容区域 */}
-                    <Text style={{marginLeft: 'auto',
+                    {/* <Text style={{marginLeft: 'auto',
                     marginRight: 'auto',
                     marginTop: 10,
                     color: '#ccc'
-                }}>————————·————————</Text>
+                }}>————————·————————</Text> */}
+                <HasFirendsDetails />
                 </View>
             </View>
         )
