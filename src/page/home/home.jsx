@@ -36,7 +36,7 @@ export default class Home extends Component {
         request.post('/sendTreeHole').then(res => {
             let {data} = res.data
            this.setState({holeMsgData: data})
-
+            console.log('=====>holeMsgData', res)
         })
     }
 
@@ -64,9 +64,9 @@ export default class Home extends Component {
                         <Text style={styles.gridText}>+</Text>
                     </TouchableOpacity>
                     <View style={styles.holeBox}>
-                        {holeMsgData.splice(holeMsgData.length-10, 10).map(item => {
+                        {holeMsgData.map((item, index) => {
                             return <TouchableOpacity style={styles.holeMsg}>
-                                <Text style={styles.gridText}>∆  {item.innerText}</Text>
+                                <Text key={index} style={styles.gridText}>∆  {item.innerText}</Text>
                             </TouchableOpacity>
                         })}
 

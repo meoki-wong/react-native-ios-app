@@ -36,9 +36,10 @@ export default class Login extends Component {
         } else {
             this.setState({isShowPwd: 2})
         }
-        request.post('/login', {
-            data: {phoneNumber: userName, password: password}
-        }).then(res=>{
+        request.post('/login',
+            {phoneNumber: userName, password: password}
+        ).then(res=>{
+            if(res.data.success){
             const {userId, token} = res.data
             Toast.showLoading(res.data.meta.msg)
             // alert(res.data.meta.msg)
@@ -50,6 +51,7 @@ export default class Login extends Component {
                 userName, userId, token
             }))
             this.props.navigation.push('Tabbar')
+            } 
         }).catch(err=>{console.log('登录错误信息：', err)})
     }
 
