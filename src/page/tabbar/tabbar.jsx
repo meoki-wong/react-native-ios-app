@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import TabNavigator from 'react-native-tab-navigator';
 import Home from '../home/home'
 import Group from '../group/group'
@@ -14,12 +14,13 @@ export default class Tabbar extends Component {
             <View style={{flex: 1}}>
                 <TabNavigator>
                     <TabNavigator.Item
-                        selected={this.state.selectedTab === 'home'}
                         title="首页"
-                        // renderIcon={() => <Image source={...} />}
+                        selected={this.state.selectedTab === 'home'}
+                        // renderIcon={() => <Image source={'../../image/header.jpeg'} />}
                         // renderSelectedIcon={() => <Image source={...} />}
                         // badgeText="1"  tabbar右上角内容
-                        onPress={() => this.setState({ selectedTab: 'home' })}>
+                        onPress={() => this.setState({ selectedTab: 'home' })}
+                        >
                         <Home navigation={this.props.navigation}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
@@ -29,7 +30,7 @@ export default class Tabbar extends Component {
                         // renderSelectedIcon={() => <Image source={...} />}
                         // renderBadge={() => <CustomBadgeView />}
                         onPress={() => this.setState({ selectedTab: 'friend' })}>
-                        <FriendCircle />
+                        <FriendCircle navigation={this.props.navigation}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'group'}

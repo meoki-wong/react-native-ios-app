@@ -18,9 +18,8 @@ instance.interceptors.request.use( async config => {
 })
 
 instance.interceptors.response.use( response => {
-    console.log('====>返回信息', response.data.meta.msg);
     Toast.hideLoading()
-    Toast.showLoading(response.data.meta.msg)
+    response.data.meta.msg && Toast.showLoading(response.data.meta.msg)
     return response
 })
 

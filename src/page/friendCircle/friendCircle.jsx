@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native'
 import friendStyl from './friendStyl'
 import HasFirendsDetails from './components/HasFirendsDetails'
 export default class FriendCircle extends Component {
-
-
+    getConsole = ()=>{
+       this.props.navigation.push('AddFirendsCircle')
+   }
     render() {
         return (
             <View>
@@ -13,8 +14,11 @@ export default class FriendCircle extends Component {
                     <ImageBackground
                         style={{ width: '100%', height: '100%' }}
                         source={require('../../image/background-friend.webp')}>
-                        <View style={styles.userHeader}>
-                            <Image style={styles.userHeaderImage} source={require('../../image/header.jpeg')} />
+                        <View style={styles.userHeader}
+                        >
+                            <Image style={styles.userHeaderImage}
+                             source={require('../../image/header.jpeg')} 
+                             />
                             <Text style={styles.headerTips}>
                                 做个人吧
                                 不会很难
@@ -29,6 +33,7 @@ export default class FriendCircle extends Component {
                     marginTop: 10,
                     color: '#ccc'
                 }}>————————·————————</Text> */}
+                <View ><Text onPress={this.getConsole}>点我</Text></View>
                 <HasFirendsDetails />
                 </View>
             </View>

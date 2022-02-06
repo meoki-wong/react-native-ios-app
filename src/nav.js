@@ -9,6 +9,7 @@ import Login from './page/account/login'
 import UserInfo from './page/account/userInfo'
 import Tabbar from './page/tabbar/tabbar'
 import LineTalk from './page/onlineTalk/onlineTalk'
+import AddFirendsCircle from './page/addFirendsCircle/AddFirendsCircle'
 import {inject,observer} from 'mobx-react'
 const Stack = createStackNavigator();
 
@@ -35,7 +36,9 @@ export default class Nav extends Component{
           <Stack.Screen name="UserInfo" component={UserInfo} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="LineTalk" component={LineTalk} />
-          <Stack.Screen name="Tabbar" component={Tabbar} />
+          <Stack.Screen options={()=>({title: '发表朋友圈'})} name="AddFirendsCircle" component={AddFirendsCircle} />
+          {/* <Stack.Screen options={(route)=>{console.log('------>route',route)}} name="Tabbar" component={Tabbar} /> */}
+          <Stack.Screen options={(res)=>({title: '主页'})} name="Tabbar" component={Tabbar} />
         </Stack.Navigator>
       </NavigationContainer>
     );
