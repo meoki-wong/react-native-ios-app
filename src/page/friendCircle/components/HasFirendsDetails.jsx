@@ -1,51 +1,52 @@
-import React, { Component } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Divider, ScrollView } from 'native-base'
 import firendStyl from './hasFirendDetaisStyl'
 import request from '../../../utils/request'
-class HasFirendsDetails extends Component {
 
-    state = {
-        firendDetailsList: []
-    }
-    componentDidMount() {
-        this.getFirendMoments()
-    }
-    getFirendMoments = () => {
+export default function HasFirendsDetails(props) {
+
+    let [firendDetailsList, setFirendDetailsList] = useState([])
+    let getFirendMoments = () => {
         request.post('/getSendMoments').then(res => {
             let { data } = res.data
             if (res.data.success) {
-                this.setState({ firendDetailsList: data })
-                console.log('=====>朋友圈内容', this.state.firendDetailsList)
+
+                setFirendDetailsList(data)
             }
         })
     }
-    render() {
-        return (
-            <View style={firendItemStyl.container}>
-                <ScrollView  h="400" >
-                {
-                    this.state.firendDetailsList.map(item => {
-                        return <>
-                            <View style={firendItemStyl.itemContainer}>
-                                <Image style={firendItemStyl.firendItemHeader} source={require('../../../image/header.jpeg')} />
+    let navigateState = props.navigation.isFocused()
+    useEffect(()=>{
+        getFirendMoments()
+        // 监听路由切换
+        let unsubscribe = props.navigation.addListener('focus',()=>{
+            getFirendMoments()
+        })
+        return unsubscribe
+    },[props.navigation])
+    
+    
+    return (
+        <View style={firendItemStyl.container}>
+            <ScrollView  h="400" >
+            {firendDetailsList.map(item => {
+                    return <>
+                        <View key={item.id} style={firendItemStyl.itemContainer}>
+                            <Image style={firendItemStyl.firendItemHeader} source={require('../../../image/header.jpeg')} />
+                            <View>
+                                <Text style={firendItemStyl.itemName}>{item.userName}</Text>
                                 <View>
-                                    <Text style={firendItemStyl.itemName}>{item.userName}</Text>
-                                    <View>
-                                        <Text>{item.createTitle}</Text>
-                                    </View>
+                                    <Text>{item.createTitle}</Text>
                                 </View>
                             </View>
-                            <Divider style={{ marginTop: 30 }} my="2" /></>
-                    })
-                }
+                        </View>
+                        <Divider style={{ marginTop: 30 }} my="2" />
+                        </>
+                })
+            }
 
-            </ScrollView>
-            </View>
-        );
-    }
-}
-
+        </ScrollView>
+        </View>
+    )}
 const firendItemStyl = StyleSheet.create(firendStyl)
-
-export default HasFirendsDetails

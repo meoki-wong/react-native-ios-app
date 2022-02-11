@@ -34,7 +34,7 @@ export default class FriendCircle extends Component {
                     color: '#ccc'
                 }}>————————·————————</Text> */}
                 <View ><Text onPress={this.getConsole}>点我</Text></View>
-                <HasFirendsDetails />
+                <HasFirendsDetails navigation={this.props.navigation}/>
                 </View>
             </View>
         )
