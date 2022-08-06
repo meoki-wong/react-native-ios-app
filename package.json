@@ -44,6 +44,7 @@
     "react-native-tab-navigator": "^0.3.4",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
+    "react-native-webview": "^11.23.0",
     "sequelize": "^6.6.2",
     "teaset": "^0.7.5"
   },
